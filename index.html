@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b2447" />
+    <title>Nethra Dhananjali Disanayaka | Computer Science Academic Portfolio</title>
+    <meta name="author" content="Yapa Mudhiyanselage Nethra Dhananjali Disanayaka" />
+    <meta
+      name="description"
+      content="Academic portfolio of YMND Disanayaka, a Computer Science Honours undergraduate at the University of Sri Jayewardenepura, with an interdisciplinary foundation in mathematics, physics, and computing."
+    />
+    <meta
+      name="keywords"
+      content="YMND Disanayaka, Computer Science, University of Sri Jayewardenepura, academic portfolio, mathematics, physics"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nethra Dhananjali Disanayaka | Academic Portfolio" />
+    <meta property="og:title" content="Nethra Dhananjali Disanayaka | Computer Science Academic Portfolio" />
+    <meta
+      property="og:description"
+      content="Academic portfolio of YMND Disanayaka, a Computer Science Honours undergraduate at the University of Sri Jayewardenepura, with an interdisciplinary foundation in mathematics, physics, and computing."
+    />
+    <meta property="og:image" content="%BASE_URL%og-image.svg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nethra Dhananjali Disanayaka | Computer Science Academic Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Academic portfolio of YMND Disanayaka, a Computer Science Honours undergraduate at the University of Sri Jayewardenepura, with an interdisciplinary foundation in mathematics, physics, and computing."
+    />
+    <meta name="twitter:image" content="%BASE_URL%og-image.svg" />
+
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark = saved
+            ? saved === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {
+          /* ignore */
+        }
+      })();
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yapa Mudhiyanselage Nethra Dhananjali Disanayaka",
+        "alternateName": "YMND Disanayaka",
+        "jobTitle": "Computer Science Honours Undergraduate",
+        "email": "mailto:ymndhananjali@gmail.com",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Sri Jayewardenepura"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "LK"
+        },
+        "sameAs": [
+          "https://github.com/nethradisanayaka",
+          "https://www.linkedin.com/in/nethra-dhananjali/"
+        ],
+        "knowsAbout": [
+          "Computer Science",
+          "Mathematics",
+          "Physics",
+          "Data Structures and Algorithms",
+          "Software Engineering"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
