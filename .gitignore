@@ -26,3 +26,6 @@ Thumbs.db
 
 # TypeScript incremental build info
 *.tsbuildinfo
+
+# Standalone project repositories kept alongside the portfolio
+Learning Management System/

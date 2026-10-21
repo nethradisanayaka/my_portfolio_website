@@ -11,14 +11,19 @@ import {
   Database,
   FileText,
   Github,
+  GraduationCap,
   History,
   Layers,
+  ListChecks,
   Network,
+  PenLine,
   Play,
+  Printer,
   Route,
   ScanLine,
   ShieldCheck,
   Sparkles,
+  Timer,
   Users,
   Workflow,
   X,
@@ -41,6 +46,12 @@ const ICONS: Record<ProjectIconName, LucideIcon> = {
   layers: Layers,
   scan: ScanLine,
   route: Route,
+  timer: Timer,
+  "list-checks": ListChecks,
+  printer: Printer,
+  "pen-line": PenLine,
+  sparkles: Sparkles,
+  "graduation-cap": GraduationCap,
 };
 
 const LINK_ICONS: Record<ProjectDetail["links"][number]["kind"], LucideIcon> = {
@@ -101,7 +112,7 @@ function ProjectDemo({ demo }: { demo: ProjectDetail["demo"] }) {
           A YouTube walkthrough of the system will be embedded here.
         </p>
         <p className="rounded-lg border border-dashed border-slate-300 px-3 py-1.5 font-mono text-[11px] break-all text-slate-500 dark:border-white/20 dark:text-slate-400">
-          YOUTUBE_VIDEO_URL
+          {demo.url}
         </p>
       </div>
     );
@@ -227,7 +238,7 @@ function ProjectArchitecture({ architecture }: { architecture: ProjectDetail["ar
 
         <div className="rounded-xl border-2 border-dashed border-navy-200 bg-navy-50/60 p-4 dark:border-accent-500/40 dark:bg-white/[0.03]">
           <p className="text-center font-mono text-[10px] font-semibold tracking-[0.2em] text-slate-500 uppercase dark:text-slate-400">
-            Microservices
+            {architecture.servicesLabel ?? "Microservices"}
           </p>
           <ul className="mt-3 grid gap-2.5 sm:grid-cols-3">
             {architecture.services.map((service) => (
@@ -238,9 +249,16 @@ function ProjectArchitecture({ architecture }: { architecture: ProjectDetail["ar
                 <p className="text-[13px] leading-snug font-semibold text-navy-900 dark:text-white">
                   {service.name}
                 </p>
-                <p className="mt-1 font-mono text-[11px] font-semibold text-accent-700 dark:text-accent-300">
-                  :{service.port}
-                </p>
+                {service.port ? (
+                  <p className="mt-1 font-mono text-[11px] font-semibold text-accent-700 dark:text-accent-300">
+                    :{service.port}
+                  </p>
+                ) : null}
+                {service.caption ? (
+                  <p className="mt-1 font-mono text-[11px] font-semibold text-accent-700 dark:text-accent-300">
+                    {service.caption}
+                  </p>
+                ) : null}
               </li>
             ))}
           </ul>

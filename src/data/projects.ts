@@ -12,7 +12,13 @@ export type ProjectIconName =
   | "users"
   | "layers"
   | "scan"
-  | "route";
+  | "route"
+  | "timer"
+  | "list-checks"
+  | "printer"
+  | "pen-line"
+  | "sparkles"
+  | "graduation-cap";
 
 export interface ProjectStat {
   value: string;
@@ -34,7 +40,8 @@ export interface ProjectHighlight {
 export interface ProjectArchitecture {
   summary: string;
   layers: { label: string; caption: string; icon: ProjectIconName }[];
-  services: { name: string; port: string }[];
+  servicesLabel?: string;
+  services: { name: string; port?: string; caption?: string }[];
   database: { label: string; caption: string };
   notes: string[];
 }
@@ -316,6 +323,244 @@ export const projects: Project[] = [
       links: [
         { label: "GitHub Repository", url: "GITHUB_REPOSITORY_URL", kind: "github" },
         { label: "YouTube Demo", url: "https://youtu.be/12oefBeji9k", kind: "youtube" },
+      ],
+    },
+  },
+  {
+    id: "learning-management-system",
+    title: "Learning Management System",
+    description:
+      "Role-based PHP & MySQL exam platform with timed papers, automatic grading, and published results.",
+    category: "Full-Stack / PHP & MySQL",
+    role: "Solo Developer / Full-Stack Development",
+    technologies: ["PHP 8", "MySQL", "JavaScript", "HTML5", "CSS3", "Apache / XAMPP"],
+    skills: [
+      "Role-based authentication & sessions",
+      "Relational schema design with foreign keys",
+      "AJAX heartbeat time syncing",
+      "Auto-grading and manual grading workflows",
+      "Dynamic question builder",
+      "Print-optimised reporting",
+    ],
+    outcome:
+      "Manual exam administration replaced by a self-service platform where teachers schedule and grade papers while students attempt them against a server-synced timer.",
+    status: "Completed",
+    githubUrl: "https://github.com/nethradisanayaka/Learning-Management-System",
+    demoUrl: "LMS_YOUTUBE_VIDEO_URL",
+    detail: {
+      subtitle: "Advanced Online Exam Management Platform",
+      overview: [
+        "A role-based learning management system built for online assessments, covering the complete exam lifecycle — authoring and scheduling, sitting a timed paper, automatic and manual grading, and publishing results.",
+        "Teachers compose exams with a dynamic question builder, set a duration and an availability window, and either publish immediately or schedule the release. Students only see the exams published to them, attempt the paper against a server-synced countdown, and can open their results only once the teacher releases the marks.",
+        "The interface was written from scratch in custom CSS with a dark glassmorphism treatment, and every database call goes through a prepared statement against a normalised MySQL schema built on cascading foreign keys.",
+      ],
+      stats: [
+        { value: "26", label: "PHP Pages & Endpoints" },
+        { value: "8", label: "Relational Tables" },
+        { value: "4", label: "Question Types" },
+        { value: "2", label: "User Roles" },
+      ],
+      demo: {
+        url: "LMS_YOUTUBE_VIDEO_URL",
+        title: "Learning Management System — project demo",
+      },
+      features: [
+        {
+          title: "Role-Based Access Control",
+          icon: "shield",
+          points: [
+            "Student self-registration with duplicate email validation",
+            "Teacher selection at sign-up creates the student–teacher link",
+            "Separate student login and staff login entry points",
+            "Session-based routing to the correct dashboard",
+            "Profile update with optional password change",
+            "Every protected page re-checks the session role",
+          ],
+        },
+        {
+          title: "Exam Authoring & Publishing",
+          icon: "workflow",
+          points: [
+            "Dynamic question builder for four question types",
+            "MCQ, True/False, Short Answer, and Essay questions",
+            "Four-option MCQ authoring with the correct option selected",
+            "Per-question mark allocation",
+            "Publish now or schedule the release for a future date",
+            "Draft, published, and scheduled states with preview",
+            "Edit and delete exams with cascading cleanup",
+          ],
+        },
+        {
+          title: "Timed Exam Engine",
+          icon: "timer",
+          points: [
+            "Countdown derived from the exam duration",
+            "Heartbeat sync to the server every two seconds",
+            "Elapsed time accumulated server-side per attempt",
+            "Timer resynchronised when the tab is hidden or returned to",
+            "Automatic submission when the countdown reaches zero",
+            "Resubmission allowed with carried-over time",
+          ],
+        },
+        {
+          title: "Automatic & Manual Grading",
+          icon: "list-checks",
+          points: [
+            "MCQ and True/False auto-graded on submission",
+            "Case-insensitive comparison against the correct answer",
+            "Short Answer and Essay left for teacher review",
+            "Auto-graded marks shown read-only to the teacher",
+            "Scores written to the attempt once grading completes",
+            "Marks released to students only when published",
+          ],
+        },
+        {
+          title: "Results & Printed Reports",
+          icon: "printer",
+          points: [
+            "Class results table with status badges and grades",
+            "Print-optimised exam report for the teacher",
+            "Student result sheet with awarded and maximum marks",
+            "Percentage and submission time per student",
+            "Results hidden until the teacher publishes the marks",
+          ],
+        },
+        {
+          title: "Role Dashboards",
+          icon: "chart",
+          points: [
+            "Teacher dashboard for exams, students, marks, and results",
+            "Student dashboard listing available exams",
+            "Live remaining-time display refreshed over AJAX",
+            "Exam states for not started, expired, ongoing, and completed",
+          ],
+        },
+        {
+          title: "Relational Database Design",
+          icon: "layers",
+          points: [
+            "Eight InnoDB tables in the Exam_database schema",
+            "Users, teacher_student, exams, questions, and options",
+            "exam_attempts and student_answers for submissions",
+            "Foreign keys with ON DELETE CASCADE throughout",
+            "Setup script and seed data for demo accounts",
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "Server-Synced Countdown",
+          description:
+            "Elapsed time is reported to the server every two seconds, so leaving the exam tab does not grant extra time.",
+          icon: "timer",
+        },
+        {
+          title: "Scheduled Publishing",
+          description:
+            "Exams can be released immediately or scheduled for a future date, and students only ever see released papers.",
+          icon: "workflow",
+        },
+        {
+          title: "Hybrid Grading",
+          description:
+            "Objective questions are auto-graded on submission while written answers are graded manually by the teacher.",
+          icon: "list-checks",
+        },
+        {
+          title: "Teacher–Student Linking",
+          description:
+            "A many-to-many junction table keeps each student's exam list restricted to their assigned teachers.",
+          icon: "users",
+        },
+        {
+          title: "Cascading Schema",
+          description:
+            "Deleting an exam removes its questions, options, attempts, and answers through cascading foreign keys.",
+          icon: "layers",
+        },
+        {
+          title: "Print-Ready Results",
+          description:
+            "Teacher reports and student result sheets are styled for print, ready to be filed as hard copies.",
+          icon: "printer",
+        },
+      ],
+      architecture: {
+        summary:
+          "A server-rendered PHP application. Role-specific pages drive the workflows, while dedicated action endpoints process the forms and serve the AJAX calls made by the exam timer.",
+        layers: [
+          { label: "Browser", caption: "Custom glassmorphism interface", icon: "scan" },
+          { label: "PHP Presentation Layer", caption: "Server-rendered pages per role", icon: "file-text" },
+          { label: "Action Endpoints", caption: "Form handling and JSON responses", icon: "route" },
+        ],
+        servicesLabel: "Application Modules",
+        services: [
+          { name: "Teacher Module", caption: "8 pages" },
+          { name: "Student Module", caption: "4 pages" },
+          { name: "Action Endpoints", caption: "7 handlers" },
+        ],
+        database: { label: "MySQL / MariaDB", caption: "8 InnoDB tables with cascading foreign keys" },
+        notes: [
+          "All queries use mysqli prepared statements, and every relationship is enforced with ON DELETE CASCADE.",
+          "Sessions carry the signed-in user and role, and each protected page re-checks the role before rendering.",
+          "The countdown timer reports elapsed time to the server on a two-second heartbeat and again on submit.",
+          "The schema is normalised around users, exams, questions, attempts, and answers.",
+        ],
+      },
+      stack: [
+        {
+          group: "Frontend",
+          items: ["HTML5", "Custom CSS3", "CSS custom properties", "Glassmorphism UI", "Vanilla JavaScript", "Fetch / AJAX", "Print stylesheets"],
+        },
+        {
+          group: "Backend",
+          items: ["PHP 8", "Session-based auth", "mysqli prepared statements", "Modular action handlers", "Role guards", "Flash messages"],
+        },
+        {
+          group: "Database",
+          items: ["MySQL / MariaDB", "InnoDB", "utf8mb4", "8 relational tables", "ON DELETE CASCADE", "Seed script"],
+        },
+        {
+          group: "DevOps / Tools",
+          items: ["Apache (XAMPP)", "phpMyAdmin", "Local setup script", "Git", "GitHub"],
+        },
+      ],
+      journey: [
+        {
+          step: "01",
+          title: "Requirement & Data Modelling",
+          description:
+            "Mapped the exam lifecycle for teachers and students and designed the eight-table schema linking users, exams, questions, attempts, and answers.",
+        },
+        {
+          step: "02",
+          title: "Interface & Authentication",
+          description:
+            "Built the role-aware login, student registration with teacher linking, and the custom dark glassmorphism design system used across every page.",
+        },
+        {
+          step: "03",
+          title: "Exam Engine",
+          description:
+            "Implemented the question builder, scheduled publishing, the server-synced countdown, and the submission flow with automatic grading for objective questions.",
+        },
+        {
+          step: "04",
+          title: "Grading & Reporting",
+          description:
+            "Added the teacher grading screens, the marks publishing gate, the results table, and the print-optimised report and result sheet.",
+        },
+      ],
+      team: {
+        summary:
+          "This was developed as an individual project, covering the full stack from the relational schema and the PHP backend through to the custom front-end.",
+        role: "My Role: Solo Developer / Full-Stack Development",
+        contributors: ["YMND Disanayaka (solo developer)"],
+        note: "I designed the database schema, built the PHP backend, and wrote the front-end interface for this project.",
+      },
+      links: [
+        { label: "GitHub Repository", url: "https://github.com/nethradisanayaka/Learning-Management-System", kind: "github" },
+        { label: "YouTube Demo", url: "LMS_YOUTUBE_VIDEO_URL", kind: "youtube" },
       ],
     },
   },
