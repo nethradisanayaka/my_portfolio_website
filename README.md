@@ -70,9 +70,27 @@ PDFs are converted to first-page PNG previews automatically.
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds and publishes `dist/` to GitHub Pages on every push to
-`main`. To enable it, in the repository go to
+The site is published to two targets, both driven by the same push to `main`:
+
+| Target | URL | Trigger |
+| --- | --- | --- |
+| GitHub Pages | `https://nethradisanayaka.github.io/my_portfolio_website/` | `.github/workflows/deploy.yml` |
+| Netlify | `https://nethradhananjali.netlify.app/` | `deploy-netlify` job in the same workflow |
+
+`.github/workflows/deploy.yml` builds the site once, then publishes `dist/` to GitHub Pages
+and to Netlify through the official Netlify CLI. To enable Pages, in the repository go to
 **Settings → Pages → Build and deployment → Source → GitHub Actions**.
+
+The Netlify job uses the `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` repository secrets.
+`netlify.toml` pins the Node version and installs `poppler-utils` so the PDF previews are
+generated on the build image.
+
+To deploy manually from a local machine:
+
+```bash
+npm run build
+netlify deploy --dir=dist --prod
+```
 
 ## Stack
 

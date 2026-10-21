@@ -29,3 +29,6 @@ Thumbs.db
 
 # Standalone project repositories kept alongside the portfolio
 Learning Management System/
+
+# Local Netlify folder
+.netlify
