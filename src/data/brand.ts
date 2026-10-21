@@ -48,7 +48,7 @@ export const brandCharacteristics: BrandCharacteristic[] = [
     name: "Resilient",
     summary: "I treat progress as sustained work across varied subjects.",
     experience:
-      "The academic record spans results from C- in Analog and Digital Electronics to A+ in Computer Graphics, Mathematical Physics I, and Thermodynamics.",
+      "The academic record spans results from C- in Analog and Digital Electronics to A+ in Computer Graphics, Software Engineering II, and Thermodynamics.",
     action:
       "I continued through the recorded course sequence across Computer Science, Mathematics, and Physics.",
     result:
